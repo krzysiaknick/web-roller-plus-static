@@ -55,16 +55,16 @@ function rollAllDice() {
 
 
 window.onload = function() {
-    // Simulating environment variable check
-    const is_Test_Env = true; // Replace this with the actual check for the environment variable
+    const is_Test_Env = !!(process.env.IS_TEST_ENV); // Retrieve environment variable
+    const testTag = document.getElementById('testTag');
     
-    if (is_Test_Env) {
-        const testTag = document.getElementById('testTag');
-        if (testTag) {
-            testTag.style.display = 'block';
-        }
+    if (is_Test_Env && testTag) {
+        testTag.style.display = 'block';
+    } else if (testTag) {
+        testTag.style.display = 'none';
     }
 };
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
     rollAllDice();
